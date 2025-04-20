@@ -1,0 +1,28 @@
+{
+  "name": "evyatar-hazan-blueprint-react-native",
+  "version": "1.0.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Evyatar-Hazan/BlueprintReactNative.git"
+  },
+  "author": "Evyatar Hazan <EvyatarHazan3.14@gmail.com>",
+  "type": "module",
+  "bin": {
+    "blueprint-create": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@react-native-community/cli": "^18.0.0",
+    "inquirer": "^12.5.2",
+    "react-native": "0.76.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
