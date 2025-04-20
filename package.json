@@ -1,6 +1,6 @@
 {
-  "name": "evyatar-hazan-blueprint-react-native",
-  "version": "1.0.1",
+  "name": "blueprint-react-native-create",
+  "version": "1.0.4",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "author": "Evyatar Hazan <EvyatarHazan3.14@gmail.com>",
   "type": "module",
   "bin": {
-    "blueprint-create": "dist/cli.js"
+    "blueprint-react-native-create": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc"
