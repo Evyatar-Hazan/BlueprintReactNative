@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "jsx": "react",
       "target": "ES2020",                         // Allows modern JS features like optional chaining
       "module": "ESNext",                         // Use ES modules (compatible with Node.js + "type": "module")
       "lib": ["ES2020"],                          // Include modern JS standard libraries

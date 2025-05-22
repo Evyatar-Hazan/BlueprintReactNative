@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/Evyatar-Hazan/BlueprintReactNative.git"
   },
-  "author": "Evyatar Hazan <EvyatarHazan3.14@gmail.com>",
+  "author": "Evyatar Hazan <EvyatarHazan3.14@gmail.com>, Naftali Zeivald <naftali2055@gmail.com>",
   "type": "module",
   "bin": {
     "blueprint-react-native-create": "dist/cli.js"
