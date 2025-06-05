@@ -3,6 +3,8 @@ import inquirer from "inquirer";
 import { execSync } from "child_process";
 import { writeFileSync, mkdirSync } from "fs";
 import chalk from "chalk";
+import copyFeatureFiles from "./copyFeatureFiles.js";
+
 
 const log = console.log;
 const runCmd = (cmd: string, opts: Record<string, any> = {}) =>
@@ -59,13 +61,11 @@ const init = async () => {
 
   if (include("i18n") && didInstall) {
     try {
-      mkdirSync("src/i18n", { recursive: true });
-      writeFileSync(
-        "src/i18n/index.ts",
-        `import i18n from 'i18next';\nimport { initReactI18next } from 'react-i18next';\n\nconst resources = {\n  en: { translation: { hello: "Hello World" } },\n  he: { translation: { hello: "שלום עולם" } },\n};\n\ni18n.use(initReactI18next).init({\n  resources,\n  lng: 'en',\n  fallbackLng: 'en',\n  interpolation: { escapeValue: false },\n});\n\nexport default i18n;\n`
-      );
+      log(chalk.blue("📁 Setting up i18n files..."));
+      copyFeatureFiles("i18n");
+      log(chalk.green("✅ i18n files setup complete."));
     } catch (err) {
-      log(chalk.red("❌ Failed to setup i18n files."));
+      log(chalk.red("❌ Failed to setup i18n files." + err));
     }
   }
 
