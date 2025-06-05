@@ -10,7 +10,8 @@
   "type": "module",
   "bin": "dist/cli.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc && node copyFeaturesFolder.js",
+    "start": "tsc && node copyFeaturesFolder.js && npx blueprint-react-native-create"
   },
   "license": "MIT",
   "dependencies": {
