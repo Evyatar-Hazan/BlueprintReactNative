@@ -2,6 +2,9 @@ export const featuresConfig: Record<string, {
 
   include: { file: string; markers?: { start: string; end: string } }[];
 
+  package?: string[];
+  devPackage?: string[];
+
   packageJsonModifications?: Partial<{
 
     [key: string]: any;
@@ -31,6 +34,8 @@ export const featuresConfig: Record<string, {
           file: "src/i18n/locales/he.json",
         },
       ],
+      package: ["react-i18next", "i18next", "react-native-localize"],
+      devPackage: ["@types/i18next"],
     },
     theme: {
       include: [

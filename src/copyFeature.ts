@@ -12,6 +12,7 @@ import chalk from "chalk";
 import { featuresConfig } from "./features.config.js";
 import { fileURLToPath } from "url";
 import { log } from "console";
+import { execSync } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -74,7 +75,6 @@ const removeUnrelatedFeatureBlocks = (
     return target;
   };
 
-
   const updatePackageJson = (activeFeatures: string[]) => {
     log(chalk.blue(`🔍 Updating package.json with active features: ${activeFeatures.join(", ")}`));
 
@@ -89,13 +89,12 @@ const removeUnrelatedFeatureBlocks = (
     for (const feature of allFeatures) {
       if (!activeFeatures.includes(feature)) continue;
 
-      const config = featuresConfig[feature as keyof typeof featuresConfig];
+      const config = featuresConfig[feature];
       const modifications = config.packageJsonModifications;
       if (modifications) {
         baseJson = deepMerge(baseJson, modifications);
       }
     }
-
 
     writeFileSync(packageJsonPath, JSON.stringify(baseJson, null, 2), "utf-8");
     console.log(chalk.green(`✅ Updated package.json with active feature(s): ${activeFeatures.join(", ")}`));
@@ -116,16 +115,37 @@ const removeUnrelatedFeatureBlocks = (
     }
   };
 
+  const installPackages = (packages: string[], isDev: boolean = false) => {
+    if (!packages.length) return;
+    try {
+      const flag = isDev ? "--save-dev" : "--save";
+      const message = isDev ? "devDependencies" : "dependencies";
+
+      console.log(chalk.blue(`📦 Installing ${message}: ${packages.join(", ")}`));
+      execSync(`npm install ${flag} ${packages.join(" ")}`, { stdio: "inherit" });
+      console.log(chalk.green(`✅ Installed ${message} successfully.`));
+    } catch (error) {
+      console.error(chalk.red(`❌ Failed to install packages: ${packages.join(", ")}`));
+      console.error(error);
+    }
+  };
+
   const copyFeature = (featureNames: string[]) => {
     const allFeatureNames = Object.keys(featuresConfig);
     const activeFeatures = Array.from(new Set([...featureNames, "default"]));
 
+    const allPackages: Set<string> = new Set();
+    const allDevPackages: Set<string> = new Set();
+
     for (const featureName of activeFeatures) {
-      const config = featuresConfig[featureName as keyof typeof featuresConfig];
+      const config = featuresConfig[featureName];
       if (!config) {
         console.log(chalk.red(`❌ Feature "${featureName}" not found.`));
         continue;
       }
+
+      (config.package ?? []).forEach(pkg => allPackages.add(pkg));
+      (config.devPackage ?? []).forEach(pkg => allDevPackages.add(pkg));
 
       for (const { file } of config.include) {
         const sourcePath = join(__dirname, sourceRoot, file);
@@ -156,6 +176,8 @@ const removeUnrelatedFeatureBlocks = (
     }
 
     updatePackageJson(activeFeatures);
+    installPackages(Array.from(allPackages));
+    installPackages(Array.from(allDevPackages), true);
   };
 
 export default copyFeature;
