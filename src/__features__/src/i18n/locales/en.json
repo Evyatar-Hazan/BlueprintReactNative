@@ -1,4 +1,12 @@
 {
-    "hello": "Hello World"
+    "home": {
+      "welcome": "Welcome to the Home Screen",
+      "subtitle": "Here you can see demonstrations of various components you built.",
+      "languageSwitcherTitle": "Language Switcher",
+      "languageSwitcherDescription": "Pick a language and marvel as everything magically translates."
+    },
+    "languages": {
+      "en": "English",
+      "he": "עברית"
+    }
 }
-  

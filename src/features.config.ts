@@ -25,6 +25,10 @@ export const featuresConfig: Record<string, {
           markers: { start: "// i18n:start", end: "// i18n:end" },
         },
         {
+          file: "src/screens/HomeScreen/HomeScreen.tsx",
+          markers: { start: "// i18n:start", end: "// i18n:end" },
+        },
+        {
           file: "src/i18n/index.ts",
         },
         {
@@ -33,8 +37,11 @@ export const featuresConfig: Record<string, {
         {
           file: "src/i18n/locales/he.json",
         },
+        {
+          file: "src/hooks/useChangeLanguage.ts",
+        },
       ],
-      package: ["react-i18next", "i18next", "react-native-localize"],
+      package: ["react-i18next", "i18next", "react-native-localize", "@react-native-async-storage/async-storage"],
       devPackage: ["@types/i18next"],
     },
     theme: {
@@ -52,6 +59,10 @@ export const featuresConfig: Record<string, {
       include: [
         { file: "eslint.config.mjs" },
         { file: "/.husky" },
+        { file: "src/components/DemoBox/DemoBox.tsx"},
+        { file: "src/components/DemoBox/styles.ts"},
+        { file: "src/screens/HomeScreen/HomeScreen.tsx"},
+        { file: "src/screens/HomeScreen/styles.ts"},
       ],
       packageJsonModifications: {
         husky: {
