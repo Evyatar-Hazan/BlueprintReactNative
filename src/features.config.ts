@@ -37,8 +37,11 @@ export const featuresConfig: Record<string, {
         {
           file: "src/i18n/locales/he.json",
         },
+        {
+          file: "src/hooks/useChangeLanguage.ts",
+        },
       ],
-      package: ["react-i18next", "i18next", "react-native-localize"],
+      package: ["react-i18next", "i18next", "react-native-localize", "@react-native-async-storage/async-storage"],
       devPackage: ["@types/i18next"],
     },
     theme: {

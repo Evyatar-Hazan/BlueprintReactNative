@@ -2,11 +2,11 @@
   "home": {
     "welcome": "ברוך הבא למסך הבית",
     "subtitle": "כאן תוכל לראות הדגמות של קומפוננטות שונות שבנית.",
-    "buttonDemoTitle": "כפתור מעוצב",
-    "buttonDemoDescription": "כפתור פשוט עם סטייל מותאם אישית.",
-    "buttonText": "לחץ כאן",
-    "inputDemoTitle": "שדה טקסט",
-    "inputDemoDescription": "שדה טקסט עם מסגרת נעימה למראה.",
-    "inputPlaceholder": "📝 כאן אפשר להכניס טקסט..."
+    "languageSwitcherTitle": "בורר שפה",
+    "languageSwitcherDescription": "בחר שפה וצפה בקסם קורה מול עיניך."
+  },
+  "languages": {
+    "en": "אנגלית",
+    "he": "עברית"
   }
 }

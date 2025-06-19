@@ -2,11 +2,11 @@
     "home": {
       "welcome": "Welcome to the Home Screen",
       "subtitle": "Here you can see demonstrations of various components you built.",
-      "buttonDemoTitle": "Styled Button",
-      "buttonDemoDescription": "A simple button with custom styling.",
-      "buttonText": "Click Me",
-      "inputDemoTitle": "Text Input",
-      "inputDemoDescription": "A text input field with a soft border.",
-      "inputPlaceholder": "📝 You can enter text here..."
+      "languageSwitcherTitle": "Language Switcher",
+      "languageSwitcherDescription": "Pick a language and marvel as everything magically translates."
+    },
+    "languages": {
+      "en": "English",
+      "he": "עברית"
     }
 }

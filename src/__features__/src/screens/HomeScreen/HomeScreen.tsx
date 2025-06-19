@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Pressable } from 'react-native';
 import { styles } from './styles';
 import { DemoBox } from '../../components/DemoBox/DemoBox';
 
 // i18n:start
+import { supportedLanguages } from '../../i18n';
 // Internationalization – because not everyone speaks English (shockingly).
 import { useTranslation } from 'react-i18next';
+import { useChangeLanguage } from '../../hooks/useChangeLanguage';
 // i18n:end
 
 /**
@@ -15,7 +17,9 @@ import { useTranslation } from 'react-i18next';
 export const HomeScreen: React.FC = () => {
   // i18n:start
   // Grabbing the t() function so we can pretend to support multiple languages.
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  // Our humble attempt to switch languages like a true international app.
+  const { changeLanguage } = useChangeLanguage();
   // i18n:end
 
   return (
@@ -32,32 +36,37 @@ export const HomeScreen: React.FC = () => {
 
       {/* Where the magic happens – scrollable demo boxes, a true dev flex zone */}
       <ScrollView contentContainerStyle={styles.scrollContent}>
-
-        {/* Demo #1 – Because every self-respecting UI needs a styled button */}
+        {/* i18n:start */}
+        {/* Language selector, because switching languages is the new dark mode */}
         <DemoBox
-          title={/* i18n:start */t('home.buttonDemoTitle', /* i18n:end */'Styled Button'/* i18n:start */)/* i18n:end */}
-          description={/* i18n:start */t('home.buttonDemoDescription', /* i18n:end */'A simple button with custom styling.'/* i18n:start */)/* i18n:end */}
+          title={t('home.languageSwitcherTitle', 'Language Switcher')}
+          description={t('home.languageSwitcherDescription', 'Pick a language and marvel as everything magically translates.')}
         >
-          <View style={styles.buttonDemo}>
-            {/* Classic button label that says “I do stuff” */}
-            <Text style={styles.buttonText}>
-              {/* i18n:start */t('home.buttonText', /* i18n:end */'Click Me'/* i18n:start */)/* i18n:end */}
-            </Text>
+          <View style={styles.languageContainer}>
+            {supportedLanguages.map((lang) => {
+              const isActive = i18n.language === lang; // You could check this twice and still not be sure.
+
+              return (
+                <Pressable
+                  key={lang} // React's way of saying “I need identity. Always.”
+                  onPress={() => changeLanguage(lang)} // Because users love clicking buttons just to see stuff flip.
+                  style={[
+                    styles.langButton,
+                    isActive && styles.langButtonActive, // Nothing screams “selected” like conditional styling.
+                  ]}
+                >
+                  <Text style={[
+                    styles.langButtonText,
+                    isActive && styles.langButtonTextActive, // Bold font = commitment to language.
+                  ]}>
+                    {t(`languages.${lang}`, lang) /* Let’s hope we remembered to translate this. Otherwise, fallback time! */}
+                  </Text>
+                </Pressable>
+              );
+            })}
           </View>
         </DemoBox>
-
-        {/* Demo #2 – A text input, because nothing says “interactive” like a blinking cursor */}
-        <DemoBox
-          title={/* i18n:start */t('home.inputDemoTitle', /* i18n:end */'Text Input'/* i18n:start */)/* i18n:end */}
-          description={/* i18n:start */t('home.inputDemoDescription', /* i18n:end */'A text input field with a soft border.'/* i18n:start */)/* i18n:end */}
-        >
-          <View style={styles.inputDemo}>
-            {/* Yes, even the placeholder needs to be internationalized... apparently */}
-            <Text>
-              {/* i18n:start */t('home.inputPlaceholder', /* i18n:end */'📝 You can enter text here...'/* i18n:start */)/* i18n:end */}
-            </Text>
-          </View>
-        </DemoBox>
+        {/* i18n:end */}
 
         {/* Feel free to add more demo boxes. Impress your PM. Or don’t. */}
       </ScrollView>
