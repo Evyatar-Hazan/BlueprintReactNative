@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, SafeAreaView } from "react-native";
+import { HomeScreen } from "./src/screens/HomeScreen/HomeScreen";
 
 // i18n:start
 import "./src/i18n";
@@ -20,35 +20,7 @@ const App = () => {
   // theme:end
 
   return (
-    <SafeAreaView
-      // theme:start
-      style={{ flex: 1, backgroundColor: colors.background }}
-      // theme:end
-    >
-      <View style={{ padding: 16 }}>
-        <Text
-          // theme:start
-          style={{ color: colors.text }}
-          // theme:end
-        >
-          {/* i18n:start */}
-          {t("welcome_message")}
-          {/* i18n:end */}
-        </Text>
-
-        {/* i18n:start */}
-        <Text style={{ marginTop: 8, fontSize: 12, color: "gray" }}>
-          {t("current_language")}
-        </Text>
-        {/* i18n:end */}
-
-        {/* theme:start */}
-        <Text style={{ marginTop: 16, fontSize: 12, color: colors.text }}>
-          Current theme: {theme}
-        </Text>
-        {/* theme:end */}
-      </View>
-    </SafeAreaView>
+    <HomeScreen />
   );
 };
 
