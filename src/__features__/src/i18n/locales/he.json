@@ -1,4 +1,12 @@
 {
-    "hello": "שלום עולם"
+  "home": {
+    "welcome": "ברוך הבא למסך הבית",
+    "subtitle": "כאן תוכל לראות הדגמות של קומפוננטות שונות שבנית.",
+    "languageSwitcherTitle": "בורר שפה",
+    "languageSwitcherDescription": "בחר שפה וצפה בקסם קורה מול עיניך."
+  },
+  "languages": {
+    "en": "אנגלית",
+    "he": "עברית"
   }
-  
+}

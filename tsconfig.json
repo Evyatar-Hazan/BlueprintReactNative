@@ -16,6 +16,6 @@
     },
 
     "include": ["src"],
-    "exclude": ["node_modules", "dist", "src/__features__"]
+    "exclude": ["node_modules", "dist", "src/__features__/**", "src/__tests__/**"],
   }
   
